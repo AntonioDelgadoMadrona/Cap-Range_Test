@@ -1,16 +1,16 @@
 // DEPENDENCIES
 import React from "react";
-// TYPES
-import type {
+// INTERFACES
+import {
   RangeHandlersType,
   RangeHandlersReturnType,
-} from "./types/range-handlers.type";
-import type { MinValueHandlerType } from "./types/min-value-handler.type";
-import type { MaxValueHandlerType } from "./types/max-value-handler.type";
-import type { MinMouseDownHandlerType } from "./types/min-mouse-down-handler.type";
-import type { MaxMouseDownHandlerType } from "./types/max-mouse-down-handler.type";
-import type { MouseMoveHandlerType } from "./types/mouse-move-handler.type";
-import type { MouseUpHandlerType } from "./types/mouse-up-handler.type";
+} from "./interfaces/range-handlers.interface";
+import { MinValueHandlerType } from "./interfaces/min-value-handler.interface";
+import { MaxValueHandlerType } from "./interfaces/max-value-handler.interface";
+import { MinMouseDownHandlerType } from "./interfaces/min-mouse-down-handler.interface";
+import { MaxMouseDownHandlerType } from "./interfaces/max-mouse-down-handler.interface";
+import { MouseMoveHandlerType } from "./interfaces/mouse-move-handler.interface";
+import { MouseUpHandlerType } from "./interfaces/mouse-up-handler.interface";
 
 const minValueChangeHandler = ({
   event,

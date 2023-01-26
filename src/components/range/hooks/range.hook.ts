@@ -1,10 +1,10 @@
 // DEPENDENCIES
-import { useState, useEffect } from "react";
+import { useState } from "react";
 // HANDLERS
 import RangeHandlers from "../handlers/range.handlers";
-// TYPES
-import type { RangeHookPropsType } from "./types/hook-props.type";
-import type { RangeHookPropsReturnType } from "./types/hook-props-return.type";
+// INTERFACES
+import { RangeHookPropsType } from "./interfaces/hook-props.interface";
+import { RangeHookPropsReturnType } from "./interfaces/hook-props-return.interface";
 
 export default function useRangeHook({
   mode,

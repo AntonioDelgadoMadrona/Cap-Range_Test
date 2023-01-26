@@ -1,4 +1,4 @@
-export type RangeHandlersType = {
+export interface RangeHandlersType {
   min: number;
   maxValue: number;
   setMinValue: Function;
@@ -17,13 +17,13 @@ export type RangeHandlersType = {
   isDraggingMax: boolean;
   minPosition: number;
   setMaxPosition: Function;
-};
+}
 
-export type RangeHandlersReturnType = {
+export interface RangeHandlersReturnType {
   handleMinValueChange: Function;
   handleMaxValueChange: Function;
   handleMinMouseDown: Function;
   handleMaxMouseDown: Function;
   handleMouseMove: Function;
   handleMouseUp: Function;
-};
+}

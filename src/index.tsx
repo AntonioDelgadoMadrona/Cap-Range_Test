@@ -1,8 +1,15 @@
 // DEPENDENCIES
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 
 // COMPONENTS
 import App from "./components/app";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+const rootElement = document.getElementById("root")!;
+const root = ReactDOM.createRoot(rootElement);
+
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);

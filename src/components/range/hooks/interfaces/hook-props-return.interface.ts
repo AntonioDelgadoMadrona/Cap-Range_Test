@@ -1,4 +1,4 @@
-export type RangeHookPropsReturnType = {
+export interface RangeHookPropsReturnType {
   handleMinValueChange: Function;
   handleMaxValueChange: Function;
   handleMinMouseDown: Function;
@@ -10,4 +10,4 @@ export type RangeHookPropsReturnType = {
   minValue: number;
   maxPosition: number;
   minPosition: number;
-};
+}

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.tsx",
   "scripts": {
-    "start": "webpack serve --port 3000",
+    "start": "webpack serve --port 8000",
     "build": "NODE_ENV=production webpack"
   },
   "repository": {
@@ -18,8 +18,11 @@
   },
   "homepage": "https://github.com/AntonioDelgadoMadrona/range_technical_test_cap#readme",
   "devDependencies": {
+    "@types/jest": "^29.4.0",
+    "@types/node": "^18.11.18",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
+    "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.26",
     "css-loader": "^6.7.3",
     "html-webpack-plugin": "^5.5.0",
@@ -33,6 +36,7 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^5.2.0",
     "styled-components": "^5.3.6"
   }
 }

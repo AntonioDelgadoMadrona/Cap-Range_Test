@@ -1,4 +1,4 @@
-export type MouseMoveHandlerType = {
+export interface MouseMoveHandlerType {
   event: React.MouseEvent<HTMLDivElement>;
   isDraggingMin: boolean;
   rangeWidth: number;
