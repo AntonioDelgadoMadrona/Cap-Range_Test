@@ -6,22 +6,23 @@ import useRangeHook from "./hooks/range.hook";
 import {
   RangeComponent,
   RangeContainer,
+  RangeLabelContainer,
   RangeLabel,
   RangeSlider,
   RangeLine,
   RangeButton,
   RangeInput,
 } from "./range.styled";
-// INTERFACES
-import { RangeComponentPropsType } from "./interfaces/range.component.interface";
 
-const Range: React.FC<RangeComponentPropsType> = ({
-  mode,
-  min,
-  max,
-  fixedValues,
-  onChange,
-}) => {
+type Props = {
+  mode: "normal" | "fixed";
+  min: number;
+  max: number;
+  fixedValues?: number[];
+  onChange: (min: number, max: number) => void;
+};
+
+const Range: React.FC<Props> = ({ mode, min, max, fixedValues, onChange }) => {
   const {
     handleMinValueChange,
     handleMaxValueChange,
@@ -45,10 +46,11 @@ const Range: React.FC<RangeComponentPropsType> = ({
         }
         onMouseUp={() => handleMouseUp()}
       >
-        {/* ----- FIRST LABEL ----- */}
-        <RangeLabel side="left">{minValue.toFixed(2)}€</RangeLabel>
+        <RangeLabelContainer>
+          <RangeLabel>{minValue.toFixed(2)}€</RangeLabel>
+          <RangeLabel>{maxValue.toFixed(2)}€</RangeLabel>
+        </RangeLabelContainer>
 
-        {/* ----- RANGE SLIDER ----- */}
         <RangeSlider
           ref={(element) => element && setRangeWidth(element.offsetWidth)}
           onMouseMove={(event: React.MouseEvent<HTMLDivElement>) =>
@@ -86,9 +88,6 @@ const Range: React.FC<RangeComponentPropsType> = ({
             />
           </RangeButton>
         </RangeSlider>
-
-        {/* ----- SECOND LABEL ----- */}
-        <RangeLabel side="right">{maxValue.toFixed(2)}€</RangeLabel>
       </RangeContainer>
     </RangeComponent>
   );

@@ -15,7 +15,7 @@ module.exports = {
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
         resolve: {
-          extensions: [".ts", ".tsx", ".js", ".json"],
+          extensions: [".ts", ".tsx", ".js", "jsx", ".json"],
         },
         use: "ts-loader",
       },
@@ -28,7 +28,7 @@ module.exports = {
   devtool: prod ? undefined : "source-map",
   plugins: [
     new HtmlWebpackPlugin({
-      template: "index.html",
+      template: "src/index.html",
     }),
     new MiniCssExtractPlugin(),
   ],

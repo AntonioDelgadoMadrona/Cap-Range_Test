@@ -18,7 +18,7 @@ function App() {
             min={1}
             max={1000}
             mode="normal"
-            onChange={(min, max) =>
+            onChange={(min: any, max: any) =>
               console.log(
                 `Min is ${min.toFixed(2)} and max is ${max.toFixed(2)}`
               )
@@ -35,6 +35,7 @@ function App() {
                 `Min is ${min.toFixed(2)} and max is ${max.toFixed(2)}`
               )
             }
+            fixedValues={[100, 200, 300, 400, 500, 600, 700, 800, 900]}
           />
         </Route>
         <Redirect to="/exercise1" />
