@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
-    "esModuleInterop": true,
+    "outDir": "./dist/",
+    "noImplicitAny": false,
+    "module": "es6",
+    "target": "es5",
     "jsx": "react",
-    "module": "esnext",
+    "allowJs": true,
     "moduleResolution": "node",
-    "lib": ["dom", "esnext"],
-    "strict": true,
-    "sourceMap": true,
-    "target": "esnext"
-  },
-  "exclude": ["node_modules"]
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
+  }
 }

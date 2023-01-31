@@ -13,16 +13,10 @@ import {
   RangeButton,
   RangeInput,
 } from "./range.styled";
+// INTERFACES
+import { RangeComponentPropsType } from "./interfaces/range.component.interface";
 
-type Props = {
-  mode: "normal" | "fixed";
-  min: number;
-  max: number;
-  fixedValues?: number[];
-  onChange: (min: number, max: number) => void;
-};
-
-const Range: React.FC<Props> = ({ mode, min, max, fixedValues, onChange }) => {
+const Range: React.FC<RangeComponentPropsType> = ({ mode, min, max, fixedValues, onChange }): React.ReactElement => {
   const {
     handleMinValueChange,
     handleMaxValueChange,
@@ -41,9 +35,7 @@ const Range: React.FC<Props> = ({ mode, min, max, fixedValues, onChange }) => {
     <RangeComponent>
       <RangeContainer
         ref={(element: any) => element && setRangeWidth(element.offsetWidth)}
-        onMouseMove={(event: React.MouseEvent<HTMLDivElement>) =>
-          handleMouseMove(event)
-        }
+        onMouseMove={(event: React.MouseEvent<HTMLDivElement>) => handleMouseMove(event)}
         onMouseUp={() => handleMouseUp()}
       >
         <RangeLabelContainer>
@@ -53,36 +45,24 @@ const Range: React.FC<Props> = ({ mode, min, max, fixedValues, onChange }) => {
 
         <RangeSlider
           ref={(element) => element && setRangeWidth(element.offsetWidth)}
-          onMouseMove={(event: React.MouseEvent<HTMLDivElement>) =>
-            handleMouseMove(event)
-          }
+          onMouseMove={(event: React.MouseEvent<HTMLDivElement>) => handleMouseMove(event)}
           onMouseUp={() => handleMouseUp()}
         >
           <RangeLine></RangeLine>
-          <RangeButton
-            position={minPosition}
-            onMouseDown={() => handleMinMouseDown()}
-          >
+          <RangeButton position={minPosition} onMouseDown={() => handleMinMouseDown()}>
             <RangeInput
               type="number"
               value={minValue}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                handleMinValueChange(event)
-              }
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleMinValueChange(event)}
               min={min}
               max={maxValue}
             ></RangeInput>
           </RangeButton>
-          <RangeButton
-            position={maxPosition}
-            onMouseDown={() => handleMaxMouseDown()}
-          >
+          <RangeButton position={maxPosition} onMouseDown={() => handleMaxMouseDown()}>
             <RangeInput
               type="number"
               value={maxValue}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                handleMaxValueChange(event)
-              }
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleMaxValueChange(event)}
               min={minValue}
               max={max}
             />

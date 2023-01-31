@@ -1,10 +1,7 @@
 // DEPENDENCIES
 import React from "react";
 // INTERFACES
-import {
-  RangeHandlersType,
-  RangeHandlersReturnType,
-} from "./interfaces/range-handlers.interface";
+import { RangeHandlersType, RangeHandlersReturnType } from "./interfaces/range-handlers.interface";
 import { MinValueHandlerType } from "./interfaces/min-value-handler.interface";
 import { MaxValueHandlerType } from "./interfaces/max-value-handler.interface";
 import { MinMouseDownHandlerType } from "./interfaces/min-mouse-down-handler.interface";
@@ -12,13 +9,7 @@ import { MaxMouseDownHandlerType } from "./interfaces/max-mouse-down-handler.int
 import { MouseMoveHandlerType } from "./interfaces/mouse-move-handler.interface";
 import { MouseUpHandlerType } from "./interfaces/mouse-up-handler.interface";
 
-const minValueChangeHandler = ({
-  event,
-  min,
-  maxValue,
-  setMinValue,
-  onChange,
-}: MinValueHandlerType) => {
+const minValueChangeHandler = ({ event, min, maxValue, setMinValue, onChange }: MinValueHandlerType) => {
   const newValue = parseFloat(event.target.value);
   if (newValue >= min && newValue < maxValue) {
     setMinValue(newValue);
@@ -26,13 +17,7 @@ const minValueChangeHandler = ({
   }
 };
 
-const maxValueChangeHandler = ({
-  event,
-  minValue,
-  max,
-  setMaxValue,
-  onChange,
-}: MaxValueHandlerType) => {
+const maxValueChangeHandler = ({ event, minValue, max, setMaxValue, onChange }: MaxValueHandlerType) => {
   const newValue = parseFloat(event.target.value);
   if (newValue > minValue && newValue <= max) {
     setMaxValue(newValue);
@@ -105,10 +90,7 @@ const mouseMoveHandler = ({
   }
 };
 
-const mouseUpHandler = ({
-  setIsDraggingMin,
-  setIsDraggingMax,
-}: MouseUpHandlerType) => {
+const mouseUpHandler = ({ setIsDraggingMin, setIsDraggingMax }: MouseUpHandlerType) => {
   setIsDraggingMin(false);
   setIsDraggingMax(false);
 };

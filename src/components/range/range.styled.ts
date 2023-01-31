@@ -1,11 +1,11 @@
 // DEPENDENCIES
 import styled from "styled-components";
+// INTERFACES
+import { RangeButtonProps } from "./interfaces/range.styled.interface";
 
-interface RangeButtonProps {
-  position: number;
-}
-
-export const RangeComponent = styled.div`
+export const RangeComponent = styled.div.attrs({
+  "data-testid": "range-component",
+})`
   width: 100%;
   height: auto;
   margin: 15rem auto auto 20rem;
