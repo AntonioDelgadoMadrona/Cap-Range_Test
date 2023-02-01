@@ -1,26 +1,18 @@
 // DEPENDENCIES
 import React from "react";
-import { render as rtlRender } from "@testing-library/react";
+import { render, RenderOptions } from "@testing-library/react";
 
-const render = (
-  ui: React.ReactElement,
-  { initialState = {}, ...renderOptions } = {}
-): any => {
-  const Wrapper = ({ children }: any): React.ReactElement => {
-    return children;
-  };
-
-  const rendered = rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
-
-  return {
-    ...rendered,
-    rerender: (ui: React.ReactElement, options: any) =>
-      render(ui, { container: rendered.container, ...options }),
-  };
+const AllTheProviders = ({ children }: any) => {
+  return children;
 };
+
+const customRender = (
+  ui: JSX.Element,
+  options: RenderOptions<typeof import("@testing-library/dom/types/queries"), HTMLElement, HTMLElement> | undefined = {}
+) => render(ui, { wrapper: AllTheProviders, ...options });
 
 // re-export everything
 export * from "@testing-library/react";
 
 // override render method
-export { render };
+export { customRender as render };

@@ -35,7 +35,7 @@ describe("Range / Hook", () => {
         mode: "normal",
         min: 0,
         max: 100,
-        fixedValues: null,
+        fixedValues: undefined,
         onChange: jest.fn(),
       })
     );
