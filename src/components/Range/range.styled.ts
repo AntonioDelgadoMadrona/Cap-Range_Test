@@ -66,7 +66,7 @@ export const RangeButton = styled.div<RangeButtonProps>`
     height: 18px;
   }
 
-  left: ${({ position }) => `${position}px`};
+  left: ${({ position }) => `${position}%`};
 `;
 
 export const RangeInput = styled.input`

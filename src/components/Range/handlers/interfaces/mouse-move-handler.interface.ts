@@ -8,7 +8,7 @@ export interface MouseMoveHandlerType {
   setMinValue: Function;
   max: number;
   min: number;
-  onChange: Function;
+  handleChangeSelection: Function;
   maxValue: number;
   fixedValues?: number[];
   isDraggingMax: boolean;
@@ -16,4 +16,4 @@ export interface MouseMoveHandlerType {
   setMaxPosition: Function;
   setMaxValue: Function;
   minValue: number;
-};
+}

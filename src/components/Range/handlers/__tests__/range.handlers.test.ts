@@ -8,7 +8,7 @@ describe("Range / Event Handlers", () => {
     min: 0,
     maxValue: 100,
     setMinValue: jest.fn(),
-    onChange: jest.fn(),
+    handleChangeSelection: jest.fn(),
     minValue: 0,
     max: 100,
     setMaxValue: jest.fn(),
@@ -33,16 +33,16 @@ describe("Range / Event Handlers", () => {
     eventHandlers.handleMinValueChange({ target: { value: 30 } });
     expect(params.setMinValue).toHaveBeenCalled();
     expect(params.setMinValue).toHaveBeenCalledWith(30);
-    expect(params.onChange).toHaveBeenCalled();
-    expect(params.onChange).toHaveBeenCalledWith(30, 100);
+    expect(params.handleChangeSelection).toHaveBeenCalled();
+    expect(params.handleChangeSelection).toHaveBeenCalledWith(30, 100);
   });
 
   it("should handle max value change", () => {
     eventHandlers.handleMaxValueChange({ target: { value: 60 } });
     expect(params.setMaxValue).toHaveBeenCalled();
     expect(params.setMaxValue).toHaveBeenCalledWith(60);
-    expect(params.onChange).toHaveBeenCalled();
-    expect(params.onChange).toHaveBeenCalledWith(0, 60);
+    expect(params.handleChangeSelection).toHaveBeenCalled();
+    expect(params.handleChangeSelection).toHaveBeenCalledWith(0, 60);
   });
 
   it("should handle min mouse down change", () => {
@@ -81,8 +81,8 @@ describe("Range / Event Handlers", () => {
     expect(uParams.setMinValue).toHaveBeenCalledWith(
       (newPosition / uParams.rangeWidth) * (uParams.max - uParams.min) + uParams.min
     );
-    expect(uParams.onChange).toHaveBeenCalled();
-    expect(uParams.onChange).toHaveBeenCalledWith(
+    expect(uParams.handleChangeSelection).toHaveBeenCalled();
+    expect(uParams.handleChangeSelection).toHaveBeenCalledWith(
       (newPosition / uParams.rangeWidth) * (uParams.max - uParams.min) + uParams.min,
       uParams.maxValue
     );
@@ -108,8 +108,8 @@ describe("Range / Event Handlers", () => {
     );
     expect(uParams.setMinValue).toHaveBeenCalled();
     expect(uParams.setMinValue).toHaveBeenCalledWith(closestValue);
-    expect(uParams.onChange).toHaveBeenCalled();
-    expect(uParams.onChange).toHaveBeenCalledWith(closestValue, uParams.maxValue);
+    expect(uParams.handleChangeSelection).toHaveBeenCalled();
+    expect(uParams.handleChangeSelection).toHaveBeenCalledWith(closestValue, uParams.maxValue);
   });
 
   it("should handle mouse up change when isDragginMax is true and mode is normal", () => {
@@ -128,8 +128,8 @@ describe("Range / Event Handlers", () => {
     expect(uParams.setMaxValue).toHaveBeenCalledWith(
       (newPosition / uParams.rangeWidth) * (uParams.max - uParams.min) + uParams.min
     );
-    expect(uParams.onChange).toHaveBeenCalled();
-    expect(uParams.onChange).toHaveBeenCalledWith(
+    expect(uParams.handleChangeSelection).toHaveBeenCalled();
+    expect(uParams.handleChangeSelection).toHaveBeenCalledWith(
       uParams.minValue,
       (newPosition / uParams.rangeWidth) * (uParams.max - uParams.min) + uParams.min
     );
@@ -155,7 +155,7 @@ describe("Range / Event Handlers", () => {
     );
     expect(uParams.setMaxValue).toHaveBeenCalled();
     expect(uParams.setMaxValue).toHaveBeenCalledWith(closestValue);
-    expect(uParams.onChange).toHaveBeenCalled();
-    expect(uParams.onChange).toHaveBeenCalledWith(0, closestValue);
+    expect(uParams.handleChangeSelection).toHaveBeenCalled();
+    expect(uParams.handleChangeSelection).toHaveBeenCalledWith(0, closestValue);
   });
 });

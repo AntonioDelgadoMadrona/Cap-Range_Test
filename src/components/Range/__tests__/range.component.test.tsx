@@ -23,7 +23,14 @@ jest.mock("../hooks/range.hook", () => {
 describe("Range Component", () => {
   it("should render properly normal component", () => {
     const { getByTestId } = render(
-      <RangeComponent mode="normal" min={1} max={100} fixedValues={undefined} onChange={() => {}} />
+      <RangeComponent
+        mode="normal"
+        min={1}
+        max={100}
+        fixedValues={undefined}
+        handleChangeSelection={() => {}}
+        handleUpdateLabelValue={() => {}}
+      />
     );
     expect(getByTestId("range-component")).toBeTruthy();
   });
@@ -35,7 +42,8 @@ describe("Range Component", () => {
         min={1}
         max={100}
         fixedValues={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-        onChange={() => {}}
+        handleChangeSelection={() => {}}
+        handleUpdateLabelValue={() => {}}
       />
     );
     expect(getByTestId("range-component")).toBeTruthy();

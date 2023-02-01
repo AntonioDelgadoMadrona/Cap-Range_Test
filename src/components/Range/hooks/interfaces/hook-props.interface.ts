@@ -3,5 +3,5 @@ export interface RangeHookPropsType {
   min: number;
   max: number;
   fixedValues?: number[];
-  onChange: Function;
+  handleChangeSelection: Function;
 }

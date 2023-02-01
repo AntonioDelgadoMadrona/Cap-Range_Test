@@ -2,7 +2,7 @@ export interface RangeHandlersType {
   min: number;
   maxValue: number;
   setMinValue: Function;
-  onChange: Function;
+  handleChangeSelection: Function;
   minValue: number;
   max: number;
   setMaxValue: Function;

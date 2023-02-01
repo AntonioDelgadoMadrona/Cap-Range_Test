@@ -1,5 +1,10 @@
+// DEPENDENCIES
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
+// COMPONENTS
 import App from "./app";
 
-ReactDOM.render(<App />, document.getElementById("app"));
+const rootElement = document.getElementById("app")!;
+const root = ReactDOM.createRoot(rootElement);
+
+root.render(<App />);

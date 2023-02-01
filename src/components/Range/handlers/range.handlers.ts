@@ -9,19 +9,19 @@ import { MaxMouseDownHandlerType } from "./interfaces/max-mouse-down-handler.int
 import { MouseMoveHandlerType } from "./interfaces/mouse-move-handler.interface";
 import { MouseUpHandlerType } from "./interfaces/mouse-up-handler.interface";
 
-const minValueChangeHandler = ({ event, min, maxValue, setMinValue, onChange }: MinValueHandlerType) => {
-  const newValue = parseFloat(event.target.value);
+const minValueChangeHandler = ({ event, min, maxValue, setMinValue, handleChangeSelection }: MinValueHandlerType) => {
+  const newValue = parseInt(parseFloat(event.target.value).toFixed(2));
   if (newValue >= min && newValue < maxValue) {
     setMinValue(newValue);
-    onChange(newValue, maxValue);
+    handleChangeSelection(newValue, maxValue);
   }
 };
 
-const maxValueChangeHandler = ({ event, minValue, max, setMaxValue, onChange }: MaxValueHandlerType) => {
-  const newValue = parseFloat(event.target.value);
+const maxValueChangeHandler = ({ event, minValue, max, setMaxValue, handleChangeSelection }: MaxValueHandlerType) => {
+  const newValue = parseInt(parseFloat(event.target.value).toFixed(2));
   if (newValue > minValue && newValue <= max) {
     setMaxValue(newValue);
-    onChange(minValue, newValue);
+    handleChangeSelection(minValue, newValue);
   }
 };
 
@@ -43,7 +43,7 @@ const mouseMoveHandler = ({
   setMinValue,
   max,
   min,
-  onChange,
+  handleChangeSelection,
   maxValue,
   fixedValues,
   isDraggingMax,
@@ -58,14 +58,14 @@ const mouseMoveHandler = ({
       setMinPosition(newPosition);
       if (mode === "normal") {
         setMinValue((newPosition / rangeWidth) * (max - min) + min);
-        onChange((newPosition / rangeWidth) * (max - min) + min, maxValue);
+        handleChangeSelection((newPosition / rangeWidth) * (max - min) + min, maxValue);
       } else {
         const closestValue = fixedValues?.reduce((prev: number, curr: number) =>
           Math.abs(curr - min) < Math.abs(prev - min) ? curr : prev
         );
         if (closestValue) {
           setMinValue(closestValue);
-          onChange(closestValue, maxValue);
+          handleChangeSelection(closestValue, maxValue);
         }
       }
     }
@@ -76,14 +76,14 @@ const mouseMoveHandler = ({
       setMaxPosition(newPosition);
       if (mode === "normal") {
         setMaxValue((newPosition / rangeWidth) * (max - min) + min);
-        onChange(minValue, (newPosition / rangeWidth) * (max - min) + min);
+        handleChangeSelection(minValue, (newPosition / rangeWidth) * (max - min) + min);
       } else {
         const closestValue = fixedValues?.reduce((prev: number, curr: number) =>
           Math.abs(curr - max) < Math.abs(prev - max) ? curr : prev
         );
         if (closestValue) {
           setMaxValue(closestValue);
-          onChange(minValue, closestValue);
+          handleChangeSelection(minValue, closestValue);
         }
       }
     }
@@ -99,7 +99,7 @@ const RangeHandlers = ({
   min,
   maxValue,
   setMinValue,
-  onChange,
+  handleChangeSelection,
   minValue,
   max,
   setMaxValue,
@@ -121,7 +121,7 @@ const RangeHandlers = ({
       min,
       maxValue,
       setMinValue,
-      onChange,
+      handleChangeSelection,
     }),
   handleMaxValueChange: (event: React.ChangeEvent<HTMLInputElement>) =>
     maxValueChangeHandler({
@@ -129,7 +129,7 @@ const RangeHandlers = ({
       minValue,
       max,
       setMaxValue,
-      onChange,
+      handleChangeSelection,
     }),
   handleMinMouseDown: () => minMouseDownHandler({ setIsDraggingMin }),
   handleMaxMouseDown: () => maxMouseDownHandler({ setIsDraggingMax }),
@@ -144,7 +144,7 @@ const RangeHandlers = ({
       setMinValue,
       max,
       min,
-      onChange,
+      handleChangeSelection,
       maxValue,
       fixedValues,
       isDraggingMax,

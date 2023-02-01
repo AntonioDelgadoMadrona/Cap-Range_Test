@@ -16,7 +16,14 @@ import {
 // INTERFACES
 import { RangeComponentPropsType } from "./interfaces/range.component.interface";
 
-const Range: React.FC<RangeComponentPropsType> = ({ mode, min, max, fixedValues, onChange }): React.ReactElement => {
+const Range: React.FC<RangeComponentPropsType> = ({
+  mode,
+  min,
+  max,
+  fixedValues,
+  handleChangeSelection,
+  handleUpdateLabelValue,
+}): React.ReactElement => {
   const {
     handleMinValueChange,
     handleMaxValueChange,
@@ -29,7 +36,15 @@ const Range: React.FC<RangeComponentPropsType> = ({ mode, min, max, fixedValues,
     minValue,
     maxPosition,
     minPosition,
-  } = useRangeHook({ mode, min, max, fixedValues, onChange });
+  } = useRangeHook({ mode, min, max, fixedValues, handleChangeSelection });
+
+  const getPercent = (min: number, max: number, position: number) => {
+    const result = (100 * (position - min)) / (max - min);
+    console.log(result);
+    if (result < -2) return 0;
+    if (result > 100) return 100;
+    return result;
+  };
 
   return (
     <RangeComponent>
@@ -49,7 +64,7 @@ const Range: React.FC<RangeComponentPropsType> = ({ mode, min, max, fixedValues,
           onMouseUp={() => handleMouseUp()}
         >
           <RangeLine></RangeLine>
-          <RangeButton position={minPosition} onMouseDown={() => handleMinMouseDown()}>
+          <RangeButton position={getPercent(min, max, minPosition)} onMouseDown={() => handleMinMouseDown()}>
             <RangeInput
               type="number"
               value={minValue}
@@ -58,7 +73,7 @@ const Range: React.FC<RangeComponentPropsType> = ({ mode, min, max, fixedValues,
               max={maxValue}
             ></RangeInput>
           </RangeButton>
-          <RangeButton position={maxPosition} onMouseDown={() => handleMaxMouseDown()}>
+          <RangeButton position={getPercent(min, max, maxPosition)} onMouseDown={() => handleMaxMouseDown()}>
             <RangeInput
               type="number"
               value={maxValue}

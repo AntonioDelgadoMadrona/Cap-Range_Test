@@ -3,5 +3,5 @@ export interface MinValueHandlerType {
   min: number;
   maxValue: number;
   setMinValue: Function;
-  onChange: Function;
+  handleChangeSelection: Function;
 }

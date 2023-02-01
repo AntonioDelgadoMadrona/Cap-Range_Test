@@ -1,5 +1,5 @@
 // DEPENDENCIES
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // HANDLERS
 import RangeHandlers from "../handlers/range.handlers";
 // INTERFACES
@@ -11,7 +11,7 @@ export default function useRangeHook({
   min,
   max,
   fixedValues,
-  onChange,
+  handleChangeSelection,
 }: RangeHookPropsType): RangeHookPropsReturnType {
   const [minValue, setMinValue] = useState(min);
   const [maxValue, setMaxValue] = useState(max);
@@ -20,6 +20,16 @@ export default function useRangeHook({
   const [rangeWidth, setRangeWidth] = useState(0);
   const [minPosition, setMinPosition] = useState(0);
   const [maxPosition, setMaxPosition] = useState(100);
+
+  const clearState: Function = (): void => {
+    setMinValue(min);
+    setMaxValue(max);
+    setIsDraggingMin(false);
+    setIsDraggingMax(false);
+    setRangeWidth(0);
+    setMinPosition(0);
+    setMaxPosition(100);
+  };
 
   const {
     handleMinValueChange,
@@ -32,7 +42,7 @@ export default function useRangeHook({
     min,
     maxValue,
     setMinValue,
-    onChange,
+    handleChangeSelection,
     minValue,
     max,
     setMaxValue,
@@ -48,6 +58,12 @@ export default function useRangeHook({
     minPosition,
     setMaxPosition,
   });
+
+  useEffect(() => {
+    return () => {
+      clearState();
+    };
+  }, [min, max, mode]);
 
   return {
     handleMinValueChange,
