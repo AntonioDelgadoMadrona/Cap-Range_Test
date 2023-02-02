@@ -60,9 +60,7 @@ export default function useRangeHook({
   });
 
   useEffect(() => {
-    return () => {
-      clearState();
-    };
+    clearState();
   }, [min, max, mode]);
 
   return {
@@ -75,7 +73,6 @@ export default function useRangeHook({
     setRangeWidth,
     maxValue,
     minValue,
-    maxPosition,
-    minPosition,
+    isDragging: isDraggingMin || isDraggingMax,
   };
 }

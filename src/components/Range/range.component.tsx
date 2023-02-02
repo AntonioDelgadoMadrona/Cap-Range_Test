@@ -5,6 +5,7 @@ import useRangeHook from "./hooks/range.hook";
 // STYLED COMPONENTS
 import {
   RangeComponent,
+  RangeTitle,
   RangeContainer,
   RangeLabelContainer,
   RangeLabel,
@@ -13,6 +14,8 @@ import {
   RangeButton,
   RangeInput,
 } from "./range.styled";
+// UTILS
+import { getPercent } from "./utils/range.component.util";
 // INTERFACES
 import { RangeComponentPropsType } from "./interfaces/range.component.interface";
 
@@ -34,28 +37,28 @@ const Range: React.FC<RangeComponentPropsType> = ({
     setRangeWidth,
     maxValue,
     minValue,
-    maxPosition,
-    minPosition,
+    isDragging,
   } = useRangeHook({ mode, min, max, fixedValues, handleChangeSelection });
 
-  const getPercent = (min: number, max: number, position: number) => {
-    const result = (100 * (position - min)) / (max - min);
-    console.log(result);
-    if (result < -2) return 0;
-    if (result > 100) return 100;
-    return result;
-  };
+  const rangeTitle = mode === "normal" ? "Normal Range" : "Fixed Range";
 
   return (
     <RangeComponent>
-      <RangeContainer
-        ref={(element: any) => element && setRangeWidth(element.offsetWidth)}
-        onMouseMove={(event: React.MouseEvent<HTMLDivElement>) => handleMouseMove(event)}
-        onMouseUp={() => handleMouseUp()}
-      >
+      <RangeTitle>{rangeTitle}</RangeTitle>
+      <RangeContainer>
         <RangeLabelContainer>
-          <RangeLabel>{minValue.toFixed(2)}€</RangeLabel>
-          <RangeLabel>{maxValue.toFixed(2)}€</RangeLabel>
+          <RangeLabel
+            onClick={() => "Update input type from button to number"}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleUpdateLabelValue("min", event.target.value)}
+            type="button"
+            defaultValue={`${minValue.toFixed(2)}€`}
+          />
+          <RangeLabel
+            onClick={() => "Update input type from button to number"}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleUpdateLabelValue("max", event.target.value)}
+            type="button"
+            defaultValue={`${maxValue.toFixed(2)}€`}
+          />
         </RangeLabelContainer>
 
         <RangeSlider
@@ -64,7 +67,12 @@ const Range: React.FC<RangeComponentPropsType> = ({
           onMouseUp={() => handleMouseUp()}
         >
           <RangeLine></RangeLine>
-          <RangeButton position={getPercent(min, max, minPosition)} onMouseDown={() => handleMinMouseDown()}>
+          <RangeButton
+            side="left"
+            isDragging={isDragging}
+            position={getPercent(min, max, minValue)}
+            onMouseDown={() => handleMinMouseDown()}
+          >
             <RangeInput
               type="number"
               value={minValue}
@@ -73,7 +81,12 @@ const Range: React.FC<RangeComponentPropsType> = ({
               max={maxValue}
             ></RangeInput>
           </RangeButton>
-          <RangeButton position={getPercent(min, max, maxPosition)} onMouseDown={() => handleMaxMouseDown()}>
+          <RangeButton
+            side="right"
+            isDragging={isDragging}
+            position={getPercent(min, max, maxValue)}
+            onMouseDown={() => handleMaxMouseDown()}
+          >
             <RangeInput
               type="number"
               value={maxValue}

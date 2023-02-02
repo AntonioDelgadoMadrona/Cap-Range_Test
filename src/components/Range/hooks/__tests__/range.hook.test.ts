@@ -27,8 +27,7 @@ describe("Range / Hook", () => {
       "setRangeWidth",
       "maxValue",
       "minValue",
-      "maxPosition",
-      "minPosition",
+      "isDragging",
     ];
     const { result } = renderHook(() =>
       useRangeHook({

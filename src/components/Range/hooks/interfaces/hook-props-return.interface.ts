@@ -8,6 +8,5 @@ export interface RangeHookPropsReturnType {
   setRangeWidth: Function;
   maxValue: number;
   minValue: number;
-  maxPosition: number;
-  minPosition: number;
+  isDragging: boolean;
 }

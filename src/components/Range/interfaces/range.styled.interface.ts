@@ -4,4 +4,6 @@ export interface RangeLabelProps {
 
 export interface RangeButtonProps {
   position: number;
+  side: "left" | "right";
+  isDragging: boolean;
 }

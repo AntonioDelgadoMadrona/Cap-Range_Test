@@ -8,17 +8,19 @@ export const RangeComponent = styled.div.attrs({
 })`
   width: 100%;
   height: auto;
-  margin: 15rem auto auto 20rem;
+  margin-top: 3rem;
+  text-align: center;
+`;
+
+export const RangeTitle = styled.h2`
+  font-size: 24px;
 `;
 
 export const RangeContainer = styled.div`
-  width: 300px;
-  height: 40px;
+  width: 350px;
+  height: 80px;
   position: relative;
-
-  & input {
-    display: none;
-  }
+  margin: 0 auto;
 `;
 
 export const RangeLabelContainer = styled.div`
@@ -27,10 +29,12 @@ export const RangeLabelContainer = styled.div`
   margin-bottom: 10px;
 `;
 
-export const RangeLabel = styled.div`
+export const RangeLabel = styled.input`
   font-size: 16px;
   color: rgb(0, 0, 0);
   font-weight: 400;
+  background-color: transparent;
+  border: none;
 `;
 
 export const RangeSlider = styled.div`
@@ -40,7 +44,10 @@ export const RangeSlider = styled.div`
   position: relative;
   width: 100%;
   height: 14px;
-  cursor: pointer;
+
+  & input {
+    display: none;
+  }
 `;
 
 export const RangeLine = styled.div`
@@ -57,16 +64,16 @@ export const RangeButton = styled.div<RangeButtonProps>`
   height: 14px;
   position: absolute;
   top: 15%;
-  left: 0;
   background-color: rgb(0, 0, 0);
   border-radius: 50%;
+  cursor: ${({ isDragging }) => (isDragging ? "grab" : "grabbing")};
 
   &:hover {
     width: 18px;
     height: 18px;
   }
 
-  left: ${({ position }) => `${position}%`};
+  left: ${({ position, side }) => (side === "right" && position > 95 ? `${position - 4}%` : `${position}%`)};
 `;
 
 export const RangeInput = styled.input`

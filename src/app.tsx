@@ -5,32 +5,35 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/Layout/layout.component";
 import Range from "./components/Range/range.component";
 
-const App: React.FC<{}> = (): React.ReactElement => {
-  // STATES
-  const [normalRange, setNormalRange] = useState({ min: 1, max: 100 });
-  const [fixedRange, setFixedRange] = useState({
+// DATA
+const receivedData = {
+  normalRange: {
+    min: 1,
+    max: 100,
+  },
+  fixedRange: {
     min: 1,
     max: 1000,
     fixedValues: [100, 200, 300, 400, 500, 600, 700, 800, 900],
-  });
-  // HANDLERS
-  const handleChangeSelection = (min: number, max: number): void => {
-    console.log("The user selected a range between ", min, " and ", max);
-  };
-  const handleUpdateLabelValueNormalRange = (label: "min" | "max", value: any): void => {
-    setNormalRange((prevState) => ({
-      ...prevState,
-      [label]: value,
-    }));
-    console.log("The user updated the ", label, " label with the value ", value);
-  };
-  const handleUpdateLabelValueFixedRange = (label: "min" | "max", value: any): void => {
-    setFixedRange((prevState) => ({
-      ...prevState,
-      [label]: value,
-    }));
-    console.log("The user updated the ", label, " label with the value ", value);
-  };
+  },
+};
+
+// HANDLERS
+const handleChangeSelection = (min: number, max: number): void => {
+  console.log("The user selected a range between ", min, " and ", max);
+  // do something with the data
+};
+const handleUpdateLabelValueNormalRange = (label: "min" | "max", value: any): void => {
+  console.log("The user updated the ", label, " label with the value ", value);
+  // do something with the data
+};
+const handleUpdateLabelValueFixedRange = (label: "min" | "max", value: any): void => {
+  console.log("The user updated the ", label, " label with the value ", value);
+  // do something with the data
+};
+
+const App: React.FC<{}> = (): React.ReactElement => {
+  const { normalRange, fixedRange } = receivedData;
   return (
     <BrowserRouter>
       <Routes>
